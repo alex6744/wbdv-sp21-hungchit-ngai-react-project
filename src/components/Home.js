@@ -6,9 +6,20 @@ const Home=()=>{
     return(
         <div>
             <h1>Home</h1>
-            <Link to="/search">
-                Search
-            </Link>
+            <ul>
+                <li>
+                    <Link to="/search/movie">
+                        Search movie
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/search/tv">
+                        Search TV
+                    </Link>
+                </li>
+            </ul>
+
+
         </div>
     )
 }
