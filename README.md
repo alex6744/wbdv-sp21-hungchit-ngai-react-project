@@ -1,5 +1,5 @@
 P1: https://docs.google.com/document/d/1nzDKU3V_HGReo3JPyGaW4JXaWPS2uYx9B_960s7U5QE/edit?usp=sharing
-
+wiki: https://github.com/alex6744/wbdv-sp21-hungchit-ngai-react-project.wiki.git
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
