@@ -1,7 +1,9 @@
 import {BrowserRouter,Route} from "react-router-dom";
 import Home from "./components/Home";
-import Search from "./components/search";
-import Details from "./components/details";
+import SearchMovie from "./components/searchMovie";
+import MovieDetails from "./components/movieDetails";
+import SearchTV from "./components/searchTV";
+import TvDetails from "./components/tvDetails";
 
 function App() {
   return (
@@ -12,12 +14,20 @@ function App() {
           <Home/>
         </Route>
         <Route exact={true}
-               path={["/search","/search/:title"]}>
-          <Search/>
+               path={["/search/movie","/search/movie/:title"]}>
+          <SearchMovie/>
         </Route>
         <Route exact={true}
-               path={["/details/:movieId"]}>
-          <Details/>
+               path={["/search/tv","/search/tv/:title"]}>
+          <SearchTV/>
+        </Route>
+        <Route exact={true}
+               path={["/details/movie/:movieId"]}>
+          <MovieDetails/>
+        </Route>
+        <Route exact={true}
+               path={["/details/tv/:tvId"]}>
+          <TvDetails/>
         </Route>
       </BrowserRouter>
     </div>
