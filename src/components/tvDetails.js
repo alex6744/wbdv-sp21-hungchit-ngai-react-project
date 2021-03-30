@@ -8,7 +8,7 @@ const TvDetails=()=>{
     useEffect(()=>{
         tvService.findTvById(tvId)
             .then(tv=>setTv(tv))
-
+        tvService.findCreditById(tvId).then(casts=>setCasts(casts.cast))
 
     },[tvId])
     const IMAGE_URL="https://image.tmdb.org/t/p/w500/"+tv.poster_path
@@ -22,7 +22,15 @@ const TvDetails=()=>{
                 {tv.overview}
             </p>
             <h2>Cast</h2>
-
+            <ul className="list-group">
+                {
+                    casts.map(actor=>
+                        <li className="list-group-item">
+                            {actor.name}
+                        </li>
+                    )
+                }
+            </ul>
         </div>
     )
 }

@@ -18,6 +18,8 @@ const MovieDetails=()=>{
             <h1>details</h1>
             <h1>{movie.original_title}</h1>
             <img src={IMAGE_URL}/>
+            <h3>release date: {movie.release_date}</h3>
+            <h3>Original Language: {movie.original_language}</h3>
             <h2>Plot</h2>
             <p>
                 {movie.overview}
