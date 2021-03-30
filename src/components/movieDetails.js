@@ -1,7 +1,7 @@
 import React ,{useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import movieService from '../services/movie-service'
-const Details=()=>{
+const MovieDetails=()=>{
     const [movie,setMovie]=useState({})
     const [casts,setCasts]=useState([])
     const {movieId}=useParams()
@@ -35,4 +35,4 @@ const Details=()=>{
         </div>
     )
 }
-export default Details
+export default MovieDetails
