@@ -1,6 +1,7 @@
 import React ,{useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import movieService from '../../services/movie-service'
+import {Table} from "react-bootstrap";
 const MovieDetails=()=>{
     const {title}=useParams()
     const [movie,setMovie]=useState({})
@@ -12,8 +13,10 @@ const MovieDetails=()=>{
         movieService.findCreditById(title)
             .then(credits=>setCasts(credits.cast))
 
+
     },[title])
     const IMAGE_URL="https://image.tmdb.org/t/p/w500/"+movie.poster_path
+    const URL="https://image.tmdb.org/t/p/w500/"
     return(
         <div>
             <h1>details</h1>
@@ -26,15 +29,32 @@ const MovieDetails=()=>{
                 {movie.overview}
             </p>
             <h2>Cast</h2>
-            <ul className="list-group">
-                { casts&&
-                    casts.map(actor=>
-                    <li className="list-group-item">
-                        {actor.name}
-                    </li>
-                    )
-                }
-            </ul>
+            {/*{*/}
+            {/*    JSON.stringify(casts)*/}
+            {/*}*/}
+
+
+               <Table responsive >
+                   <tbody>
+
+                       <tr>
+
+                           { casts&&
+                               casts.map(actor=>
+                                   <td>
+                                       <img width="100" heigh="100" src={URL+actor.profile_path}/>
+                                       {
+                                           actor.name
+                                       }
+
+                                   </td>
+                               )
+                           }
+                       </tr>
+                   </tbody>
+               </Table>
+
+
         </div>
     )
 }
