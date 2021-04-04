@@ -17,6 +17,11 @@ const Home=()=>{
                         Search TV
                     </Link>
                 </li>
+                <li>
+                    <Link to="/manager">
+                        manager
+                    </Link>
+                </li>
             </ul>
 
 
