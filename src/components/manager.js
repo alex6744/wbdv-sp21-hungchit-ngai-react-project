@@ -10,6 +10,7 @@ import Main from "./main/main";
 import TvDetails from "./details/tvDetails";
 import Login from "./user/login";
 import Register from "./user/register";
+import Profile from "./user/profile";
 class Manager extends React.Component{
     state={
 
@@ -49,8 +50,8 @@ class Manager extends React.Component{
                         </div>
                         <div className="col-1 ">
                             <DropdownButton variant="white" id="dropdown-basic-button" title="TV shows">
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                <Dropdown.Item href="#/action-1">Now playing</Dropdown.Item>
+                                <Dropdown.Item href="#/action-2">popular</Dropdown.Item>
                                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                             </DropdownButton>
                         </div>
@@ -110,6 +111,10 @@ class Manager extends React.Component{
                 <Route path={["/register"]}
                        exact={true}>
                     <Register/>
+                </Route>
+                <Route path={["/profile"]}
+                       exact={true}>
+                    <Profile/>
                 </Route>
 
 
