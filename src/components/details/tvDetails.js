@@ -1,16 +1,16 @@
 import React ,{useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import tvService from '../services/tv-service'
+import tvService from '../../services/tv-service'
 const TvDetails=()=>{
     const [tv,setTv]=useState({})
     const [casts,setCasts]=useState([])
-    const {tvId}=useParams()
+    const {title}=useParams()
     useEffect(()=>{
-        tvService.findTvById(tvId)
+        tvService.findTvById(title)
             .then(tv=>setTv(tv))
-        tvService.findCreditById(tvId).then(casts=>setCasts(casts.cast))
+        tvService.findCreditById(title).then(casts=>setCasts(casts.cast))
 
-    },[tvId])
+    },[title])
     const IMAGE_URL="https://image.tmdb.org/t/p/w500/"+tv.poster_path
     return(
         <div>
@@ -24,6 +24,7 @@ const TvDetails=()=>{
             <h2>Cast</h2>
             <ul className="list-group">
                 {
+                    casts&&
                     casts.map(actor=>
                         <li className="list-group-item">
                             {actor.name}
