@@ -1,40 +1,39 @@
 import React,{useEffect,useState} from 'react'
 import {Link, useParams, useHistory} from "react-router-dom";
-import movieService from "../services/movie-service"
+import movieService from "../../services/movie-service"
 
-const SearchMovie=()=>{
+const SearchMovies=()=>{
     const {title}=useParams()
-    const [searchTitle,setSearchTitle]=useState("")
+
     const [results,setResults]=useState([])
+
     const history = useHistory()
     useEffect(()=>{
-        setSearchTitle(title)
+
 
         if(title){
            movieService.findMovieByTitle(title)
-               .then(results=>setResults(results.results))
+               .then(results=> setResults(results.results)
+               )
         }
-
 
 
     },[title])
     return(
         <div>
             <h1>Search Movie</h1>
-            <input onChange={event => {
-                setSearchTitle(event.target.value)
-            }}
-                    className="form-control"
-                    value={searchTitle}/>
-            <button onClick={()=> {
-                    history.push(`/search/movie/${searchTitle}`)}}
-                    className="btn btn-primary btn-block">
-                Search
-            </button>
-
 
             <ul className="list-group">
+
+
                 {
+                    results.length===0&&
+                    <h3>There are no movies that matched your query.</h3>
+                }
+
+
+                {
+                    results &&
                     results.map(movie=>
                         <li className="list-group-item" key={movie.id}>
                             <Link to={`/details/movie/${movie.id}`}>
@@ -49,4 +48,4 @@ const SearchMovie=()=>{
         </div>
     )
 }
-export default SearchMovie
+export default SearchMovies

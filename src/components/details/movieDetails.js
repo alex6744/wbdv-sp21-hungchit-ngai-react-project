@@ -1,17 +1,18 @@
 import React ,{useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import movieService from '../services/movie-service'
+import movieService from '../../services/movie-service'
 const MovieDetails=()=>{
+    const {title}=useParams()
     const [movie,setMovie]=useState({})
     const [casts,setCasts]=useState([])
-    const {movieId}=useParams()
+
     useEffect(()=>{
-        movieService.findMovieById(movieId)
+        movieService.findMovieById(title)
             .then(movie=>setMovie(movie))
-        movieService.findCreditById(movieId)
+        movieService.findCreditById(title)
             .then(credits=>setCasts(credits.cast))
 
-    },[movieId])
+    },[title])
     const IMAGE_URL="https://image.tmdb.org/t/p/w500/"+movie.poster_path
     return(
         <div>
@@ -26,7 +27,7 @@ const MovieDetails=()=>{
             </p>
             <h2>Cast</h2>
             <ul className="list-group">
-                {
+                { casts&&
                     casts.map(actor=>
                     <li className="list-group-item">
                         {actor.name}
