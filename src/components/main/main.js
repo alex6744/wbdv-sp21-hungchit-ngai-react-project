@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
+import UpComing from "./upComing";
+import NowPlaying from "./nowPlaying";
 
 const Main=()=>{
     const history = useHistory()
@@ -27,6 +29,12 @@ const Main=()=>{
                         Search
                 </button>
             </div>
+            <br/>
+            <br/>
+            <NowPlaying/>
+            <br/>
+            <br/>
+            <UpComing/>
         </div>
     )
 
