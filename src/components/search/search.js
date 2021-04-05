@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Link, Route, useHistory, useParams} from "react-router-dom";
 import SearchMovies from "./searchMovies";
 import SearchTV from "./searchTV";
-
+import "./search.css"
 const Search=()=>{
     const {title,type}=useParams()
     const [searchTitle,setSearchTitle]=useState("")
@@ -25,14 +25,14 @@ const Search=()=>{
             <div className="row">
                 <div className="col-4">
                     <ul className="list-group">
-                        <li className="list-group-item "  >
-                            <Link to={`/search/movie/${title}`} className="nav-link" >
+                        <li className="list-group-item  active"  >
+                            <Link to={`/search/movie/${title}`} className="nav-link color-black" >
                                 Movies
                             </Link>
 
                         </li>
                         <li className="list-group-item ">
-                            <Link to={`/search/tv/${title}`} className="nav-link" >
+                            <Link to={`/search/tv/${title}`} className="nav-link color-black" >
                                 TV Shows
                             </Link>
                         </li>
