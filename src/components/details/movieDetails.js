@@ -43,6 +43,7 @@ const MovieDetails=()=>{
                                casts.map(actor=>
                                    <td>
                                        <img width="100" heigh="100" src={URL+actor.profile_path}/>
+                                       <br/>
                                        {
                                            actor.name
                                        }
@@ -53,8 +54,9 @@ const MovieDetails=()=>{
                        </tr>
                    </tbody>
                </Table>
-
-
+dsadsaaaaaaaaaaaaaaasadas
+sdsddasdas
+            <input/>
         </div>
     )
 }
