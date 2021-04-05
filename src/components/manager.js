@@ -9,7 +9,7 @@ import MovieDetails from "./details/movieDetails";
 import Main from "./main/main";
 import TvDetails from "./details/tvDetails";
 import Login from "./user/login";
-import Register from "./user/register";
+import Register from "./register/register";
 import Profile from "./user/profile";
 class Manager extends React.Component{
     state={
