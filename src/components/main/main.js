@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
-import UpComing from "./upComing";
+import Popular from "./popular";
 import NowPlaying from "./nowPlaying";
 
 const Main=()=>{
@@ -34,7 +34,7 @@ const Main=()=>{
             <NowPlaying/>
             <br/>
             <br/>
-            <UpComing/>
+            <Popular/>
         </div>
     )
 
