@@ -13,8 +13,17 @@ export const findTvById = (TvID) =>
     fetch(`${TV_URL}/${TvID}?api_key=${API_KEY}`)
         .then(response => response.json())
 
+export const findOnAir = () =>
+    fetch(`${TV_URL}/on_the_air?api_key=${API_KEY}`)
+        .then(response => response.json())
+export const findPopular = () =>
+    fetch(`${TV_URL}/popular?api_key=${API_KEY}`)
+        .then(response => response.json())
+
 export default {
     findCreditById,
     findTvById,
-    findTvByTitle
+    findTvByTitle,
+    findOnAir,
+    findPopular
 }
