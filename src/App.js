@@ -1,4 +1,4 @@
-import {BrowserRouter,Route} from "react-router-dom";
+import {BrowserRouter,Route,Redirect} from "react-router-dom";
 import Home from "./components/Home";
 
 import MovieDetails from "./components/details/movieDetails";
@@ -18,9 +18,13 @@ function App() {
 
 
         <Route exact={true}
-               path={["/","/:layout","/:layout/:type","/:layout/:type/:title"]}>
+               path={["/","/main","/:layout","/:layout/:type","/:layout/:type/:title"]}>
+
           <Manager/>
         </Route>
+          <Route exact path="/">
+              <Redirect to="/main" />
+          </Route>
 
 
       </BrowserRouter>
