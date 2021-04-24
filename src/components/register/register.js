@@ -1,10 +1,11 @@
 import React, {useEffect,useState} from "react";
 import {Link,useParams} from "react-router-dom";
 import {connect} from 'react-redux'
-import individualService from "../../services/individual-service"
+
+import LoginService from "../../services/login-service"
 const Register=()=>{
-    const [newUser,setNewUser]=useState({})
-    const [userType,setUserType]=useState("")
+    const [newUser,setNewUser]=useState({username:"",password:"",email:"",role:[]})
+    const [verify,setVerify]=useState("")
     useEffect(()=>{
 
     },[])
@@ -13,7 +14,7 @@ const Register=()=>{
             <h1>
                 Sign up
             </h1>
-            <div onChange={(e)=>setUserType(e.target.value)}>
+            <div onChange={(e)=>setNewUser({...newUser,role:[e.target.value]})}>
                 <input type="radio" value="individual" name="type" /> individual <br/>
                 <input type="radio" value="business" name="type" /> business    <br/>
                 <input type="radio" value="creator" name="type" /> creator      <br/>
@@ -27,15 +28,16 @@ const Register=()=>{
                 </label>
                 <div className="col-sm-10">
                     <input type="text"
-
+                            value={newUser.username}
                            className="form-control"
                            id="username"
                            placeholder="alice"
                            onChange={(e)=>{
-                               setNewUser({...newUser,userName:e.target.value})
+                               setNewUser({...newUser, username: e.target.value})
                            }}/>
                 </div>
             </div>
+            {JSON.stringify(newUser)}
             <button onClick={()=>console.log(newUser)} >
                 Sign up
             </button>
@@ -47,7 +49,9 @@ const Register=()=>{
                     <input type="password"
                            className="form-control"
                            id="inputPassword"
-                           placeholder="21gfds@f"/>
+                           placeholder="21gfds@f"
+                            value={newUser.password}
+                            onChange={(e)=>setNewUser({...newUser,password:e.target.value})}/>
                 </div>
             </div>
             <div className="mb-3 row">
@@ -62,14 +66,31 @@ const Register=()=>{
                 </div>
             </div>
             <div className="mb-3 row">
+                <label htmlFor="email" className="col-sm-2 col-form-label">
+                    email
+                </label>
+                <div className="col-sm-10">
+                    <input type="email"
+                           className="form-control"
+                           id="email"
+                           placeholder="21gfds@fsdds.com"
+                            value={newUser.email}
+                            onChange={(e)=>setNewUser({...newUser,email:e.target.value})}/>
+                </div>
+            </div>
+            <div className="mb-3 row">
                 <label className="col-sm-2 col-form-label"></label>
                 <div className="col-sm-10">
-                    <Link to="/profile">
-                        <button className="btn btn-primary btn-block">
+
+                        <button className="btn btn-primary btn-block"
+                                onClick={()=>{
+                                    LoginService.userRegister(newUser)
+                                        .then((t)=>console.log(t))
+                                }}>
                             Sign up
                         </button>
 
-                    </Link>
+
                     <div className="row">
                         <div className="col-6">
                             <Link to="/login">
