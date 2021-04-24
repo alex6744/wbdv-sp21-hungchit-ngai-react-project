@@ -7,7 +7,17 @@ import TvDetails from "./components/details/tvDetails";
 import Main from "./components/manager"
 import Search from "./components/search/search";
 import Manager from "./components/manager";
+import {combineReducers, createStore} from "redux";
+import userReducer from "./reducers/user-reducer";
+import {Provider} from "react-redux";
+const reducer=combineReducers({
+    userReducer:userReducer
+})
+const store=createStore(reducer)
 function App() {
+
+
+
   return (
     <div className="container-fluid">
       <BrowserRouter>
@@ -19,8 +29,10 @@ function App() {
 
         <Route exact={true}
                path={["/","/main","/:layout","/:layout/:type","/:layout/:type/:title"]}>
+            <Provider store={store}>
+                <Manager/>
+            </Provider>
 
-          <Manager/>
         </Route>
           <Route exact path="/">
               <Redirect to="/main" />
