@@ -1,17 +1,21 @@
 import React ,{useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import movieService from '../../services/movie-service'
+import ratingService from '../../services/rating-service'
 import {Table} from "react-bootstrap";
-const MovieDetails=()=>{
+const MovieDetails=({currentUser})=>{
     const {title}=useParams()
     const [movie,setMovie]=useState({})
     const [casts,setCasts]=useState([])
+    const [comment,setComment]=useState("")
+    const [ratings,setRating]=useState([])
 
     useEffect(()=>{
         movieService.findMovieById(title)
             .then(movie=>setMovie(movie))
         movieService.findCreditById(title)
             .then(credits=>setCasts(credits.cast))
+        ratingService.findRatingById(title).then(ratings=>setRating(ratings))
 
 
     },[title])
@@ -54,10 +58,37 @@ const MovieDetails=()=>{
                        </tr>
                    </tbody>
                </Table>
-dsadsaaaaaaaaaaaaaaasadas
-sdsddasdas
-            <input/>
+Rate this Movie
+            <textarea   value={comment}
+                        onChange={(e)=>setComment(e.target.value)}></textarea>
+
+            <button onClick={()=>{
+                ratingService.createRating({id:currentUser[0].id,
+                                                comment:comment,movieId: title},currentUser[0].accessToken
+                )
+                console.log(ratings)
+                setRating([...ratings,{id:currentUser[0].id,
+                    comment:comment,movieId: title}])
+            }}>submit</button>
+
+            <Table responsive >
+                <tbody>
+                    <tr>
+                        {
+                        ratings&&
+                            ratings.map(rating=>
+                            <td>
+                                user: {rating.id}
+                                <br/>
+                                commnet: {rating.comment}
+                            </td>
+                            )
+                        }
+                    </tr>
+                </tbody>
+            </Table>
         </div>
+
     )
 }
 export default MovieDetails
