@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Link, Route,BrowserRouter} from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Search from "./search/search";
-
+import {connect} from "react-redux";
 import SearchTV from "./search/searchTV";
 import MovieDetails from "./details/movieDetails";
 import Main from "./main/main";
@@ -11,18 +11,14 @@ import TvDetails from "./details/tvDetails";
 import Login from "./user/login";
 import Register from "./register/register";
 import Profile from "./user/profile";
-class Manager extends React.Component{
-    state={
+import LoginService, {updateUser} from "../services/login-service";
 
-    }
-    componentDidMount=()=>{
+const Manager =({loginUser,currentUser,signout,updateUser})=>{
 
-    }
-
-    render() {
         return(
             <div>
-
+                {JSON.stringify("sds")}
+                {JSON.stringify(currentUser)}
 
                 <nav className="navbar navbar-expand-lg navbar-light bg-light container-fluid navbar-style">
                     <div className="container-fluid">
@@ -68,15 +64,38 @@ class Manager extends React.Component{
 
                         </div>
                         <div className="col-1 ">
-                            <Link to={"/login"}>
+
+                            {
+                                !currentUser[0].id&&
+                                <Link to={"/login"}>
                                 login
-                            </Link>
+                                </Link>
+                            }
+                            {
+                                currentUser[0].id&&
+                                <Link to={"/profile"}>
+                                    {/*{currentUser[0].username}*/}
+                                    sadsds
+                                </Link>
+                            }
+
 
                         </div>
                         <div className="col-1 ">
-                            <Link to={"/register"}>
+                            {
+                                !currentUser[0].id&&
+                                <Link to={"/register"}>
                                 sign up
-                            </Link>
+                                </Link>
+                            }
+                            {
+                               currentUser[0].id&&
+                              <div onClick={()=> signout()}>
+                                <Link to={"/main"}>
+                                   sign out
+                                </Link>
+                              </div>
+                            }
                         </div>
                         <div className="col-1 ">
 
@@ -98,7 +117,7 @@ class Manager extends React.Component{
                 </Route>
                 <Route path={["/details/movie/:title"]}
                        exact={true}>
-                    <MovieDetails/>
+                    <MovieDetails currentUser={currentUser}/>
                 </Route>
                 <Route path={["/details/tv/:title"]}
                        exact={true}>
@@ -106,7 +125,8 @@ class Manager extends React.Component{
                 </Route>
                 <Route path={["/login"]}
                        exact={true}>
-                    <Login/>
+                    <Login loginUser={loginUser}
+                           currentUser={currentUser}/>
                 </Route>
                 <Route path={["/register"]}
                        exact={true}>
@@ -114,14 +134,33 @@ class Manager extends React.Component{
                 </Route>
                 <Route path={["/profile"]}
                        exact={true}>
-                    <Profile/>
+                    <Profile updateUser={updateUser}
+                             currentUser={currentUser}
+
+                    />
                 </Route>
+
 
 
             </div>
 
         )
-    }
+
 
 }
-export default Manager
+const stpm = (state) => ({
+    currentUser: state.userReducer.currentUser
+})
+const dtpm=(dispatch)=>({
+    loginUser:(user)=>{
+        LoginService.userLogin(user).then(feedback=>dispatch({type:"LOGIN",user:feedback}))
+    },
+    signout:()=>{
+       dispatch({type:"SIGNOUT"})
+    },
+    updateUser:(token,user)=>{
+        LoginService.updateUser(token,user).then(feedback=>dispatch({type:"UPDATE",user:user}))
+    }
+
+})
+export default connect(stpm,dtpm)(Manager)
