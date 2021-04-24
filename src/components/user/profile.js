@@ -1,11 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
+import LoginService, {updateUser} from "../../services/login-service";
+const Profile=({updateUser,currentUser})=>{
 
-const Profile=()=>{
+    const [email,setEmail]=useState(currentUser[0].email)
+
     return(
         <div className="container">
             <h1>
                 Profile
             </h1>
+            {JSON.stringify()}
             <div className="alert alert-success" role="alert">
                 Profile successfully saved
             </div>
@@ -20,21 +24,21 @@ const Profile=()=>{
                            readOnly
                            className="form-control"
                            id="username"
-                           value="alice"/>
+                           value={currentUser[0].username}/>
                 </div>
             </div>
-            <div className="mb-3 row">
-                <label htmlFor="phone"
-                       className="col-sm-2 col-form-label">
-                    Phone
-                </label>
-                <div className="col-sm-10">
-                    <input type="tel"
-                           className="form-control"
-                           id="phone"
-                           placeholder="555-122-4567"/>
-                </div>
-            </div>
+            {/*<div className="mb-3 row">*/}
+            {/*    <label htmlFor="phone"*/}
+            {/*           className="col-sm-2 col-form-label">*/}
+            {/*        Phone*/}
+            {/*    </label>*/}
+            {/*    <div className="col-sm-10">*/}
+            {/*        <input type="tel"*/}
+            {/*               className="form-control"*/}
+            {/*               id="phone"*/}
+            {/*               placeholder="555-122-4567"/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <div className="mb-3 row">
                 <label htmlFor="email"
                        className="col-sm-2 col-form-label">
@@ -44,46 +48,51 @@ const Profile=()=>{
                     <input type="email"
                            className="form-control"
                            title="Please enter a valid email"
-                           placeholder="alice@gmail.com"
-                           id="email"/>
+                           value={email}
+                           id="email"
+                            onChange={(e)=>
+                                setEmail(e.target.value)}
+                    />
                 </div>
             </div>
-            <div className="mb-3 row">
-                <label htmlFor="role"
-                       className="col-sm-2 col-form-label">
-                    Role
-                </label>
-                <div className="col-sm-10">
-                    <select id="role" className="form-control">
-                        <option>Faculty</option>
-                        <option>Student</option>
-                        <option>Admin</option>
-                    </select>
-                </div>
-            </div>
-            <div className="mb-3 row">
-                <label htmlFor="dob"
-                       className="col-sm-2 col-form-label">
-                    DOB
-                </label>
-                <div className="col-sm-10">
-                    <input type="date"
-                           className="form-control"
-                           title="Please enter your DOB"
-                           value="mm/dd/yyyy"
-                           id="dob"/>
-                </div>
-            </div>
+            {/*<div className="mb-3 row">*/}
+            {/*    <label htmlFor="role"*/}
+            {/*           className="col-sm-2 col-form-label">*/}
+            {/*        Role*/}
+            {/*    </label>*/}
+            {/*    <div className="col-sm-10">*/}
+            {/*        <select id="role" className="form-control">*/}
+            {/*            <option>Faculty</option>*/}
+            {/*            <option>Student</option>*/}
+            {/*            <option>Admin</option>*/}
+            {/*        </select>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<div className="mb-3 row">*/}
+            {/*    <label htmlFor="dob"*/}
+            {/*           className="col-sm-2 col-form-label">*/}
+            {/*        DOB*/}
+            {/*    </label>*/}
+            {/*    <div className="col-sm-10">*/}
+            {/*        <input type="date"*/}
+            {/*               className="form-control"*/}
+            {/*               title="Please enter your DOB"*/}
+            {/*               value="mm/dd/yyyy"*/}
+            {/*               id="dob"/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {JSON.stringify(currentUser)}
             <div className="mb-3 row">
                 <label className="col-sm-2 col-form-label">
 
                 </label>
                 <div className="col-sm-10">
-                    <a className="btn btn-success btn-block"
-                       href="#"
-                       role="button">
+                    <button className="btn btn-success btn-block"
+                            onClick={()=>
+                              updateUser(currentUser[0].accessToken,{id:currentUser[0].id,email:email})
+                            }>
                         Update
-                    </a>
+                    </button>
                 </div>
             </div>
             <div className="mb-3 row">
