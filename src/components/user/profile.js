@@ -89,7 +89,7 @@ const Profile=({updateUser,currentUser})=>{
                 <div className="col-sm-10">
                     <button className="btn btn-success btn-block"
                             onClick={()=>
-                              updateUser(currentUser[0].accessToken,{id:currentUser[0].id,email:email})
+                              updateUser({id:currentUser[0].id,email:email})
                             }>
                         Update
                     </button>

@@ -28,14 +28,14 @@ function App() {
 
 
         <Route exact={true}
-               path={["/","/main","/:layout","/:layout/:type","/:layout/:type/:title"]}>
+               path={["/","/home","/:layout","/:layout/:type","/:layout/:type/:title"]}>
             <Provider store={store}>
                 <Manager/>
             </Provider>
 
         </Route>
           <Route exact path="/">
-              <Redirect to="/main" />
+              <Redirect to="/home" />
           </Route>
 
 

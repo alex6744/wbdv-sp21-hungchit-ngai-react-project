@@ -24,7 +24,7 @@ const Manager =({loginUser,currentUser,signout,updateUser})=>{
                     <div className="container-fluid">
 
                         <div className="col-1">
-                            <Link to={"/main"}>
+                            <Link to={"/home"}>
                                 <h2>Netfly</h2>
                             </Link>
                         </div>
@@ -106,7 +106,7 @@ const Manager =({loginUser,currentUser,signout,updateUser})=>{
                     </div>
                 </nav>
                 <br/>
-                <Route path={["/main"]}
+                <Route path={["/home"]}
                        exact={true}>
                     <Main/>
                 </Route>

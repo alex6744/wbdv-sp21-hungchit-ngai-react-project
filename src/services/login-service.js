@@ -20,14 +20,14 @@ export const userLogin=(user)=>
     })
         .then(response => response.json())
 
-export const updateUser=(token,user)=>
+export const updateUser=(user)=>
 
-    fetch(`${LOGIN_URL}/api/${user.id}`, {
+    fetch(`${LOGIN_URL}/api/controller/${user.id}`, {
         method: "PUT",
         body: JSON.stringify(user),
         headers: {
-            'content-type': 'application/json',
-            'Authorization': 'Bearer '+token
+
+            'content-type': 'application/json'
         },
 
 
