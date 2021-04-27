@@ -22,16 +22,17 @@ const Search=()=>{
                 Search
             </button>
             <br/>
+            {JSON.stringify(type)}
             <div className="row">
                 <div className="col-4">
                     <ul className="list-group">
-                        <li className="list-group-item  active"  >
+                        <li className={`list-group-item  ${type==="movie"?"active":""}`}  >
                             <Link to={`/search/movie/${title}`} className="nav-link color-black" >
                                 Movies
                             </Link>
 
                         </li>
-                        <li className="list-group-item ">
+                        <li className={`list-group-item ${type === "tv" ? "active" : ""}`}>
                             <Link to={`/search/tv/${title}`} className="nav-link color-black" >
                                 TV Shows
                             </Link>
