@@ -20,7 +20,9 @@ export const findNowPlaying = () =>
 export const findPopular = () =>
     fetch(`${MOVIE_URL}/popular?api_key=${API_KEY}`)
         .then(response => response.json())
-
+export  const getCreditById=(id)=>
+    fetch(`${MOVIE_URL}/${id}/credits?api_key=${API_KEY}`)
+        .then(response=>response.json())
 export default {
     findMovieByTitle,
     findMovieById,

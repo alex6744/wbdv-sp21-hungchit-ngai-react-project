@@ -17,6 +17,7 @@ import MoviePopular from "./popular/moviePopular";
 import TVPopular from "./popular/TVPopular";
 import TVNowPlaying from "./nowPlaying/TVNowPlaying";
 import ActorDetails from "./details/actorDetails";
+import AllActor from "./credits/allActor";
 
 const Manager =({history})=>{
 
@@ -152,6 +153,10 @@ const Manager =({history})=>{
                 <Route path={["/popular/movie"]}
                        exact={true}>
                     <MoviePopular/>
+                </Route>
+                <Route path={["/casts/:type/:title"]}
+                       exact={true}>
+                    <AllActor/>
                 </Route>
                 <Route path={["/popular/tv"]}
                        exact={true}>

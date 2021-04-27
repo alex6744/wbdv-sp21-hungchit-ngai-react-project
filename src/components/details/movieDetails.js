@@ -63,7 +63,7 @@ const MovieDetails=({currentUser})=>{
                                    <br/>
 
                                    <div className="card-body">
-                                       <Link to={"/"}>
+                                       <Link to={`/casts/movie/${title}`}>
                                            <h3 className="card-title">View More</h3>
                                        </Link>
                                    </div>
