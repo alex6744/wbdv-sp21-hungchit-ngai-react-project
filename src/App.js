@@ -10,17 +10,15 @@ import Manager from "./components/manager";
 import {combineReducers, createStore} from "redux";
 import userReducer from "./reducers/user-reducer";
 import {Provider} from "react-redux";
-const reducer=combineReducers({
-    userReducer:userReducer
-})
-const store=createStore(reducer)
+
+
 function App() {
 
 
 
   return (
     <div className="container-fluid">
-      <BrowserRouter>
+      <BrowserRouter >
         {/*<Route exact={true}*/}
         {/*       path={["/"]}>*/}
         {/*  <Home/>*/}
@@ -28,10 +26,11 @@ function App() {
 
 
         <Route exact={true}
-               path={["/","/home","/:layout","/:layout/:type","/:layout/:type/:title"]}>
-            <Provider store={store}>
-                <Manager/>
-            </Provider>
+               path={["/","/home","/:layout","/:layout/:type","/:layout/:type/:title"]}
+                render={(props)=><Manager {...props}/>}>
+
+
+
 
         </Route>
           <Route exact path="/">
