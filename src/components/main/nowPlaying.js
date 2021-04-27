@@ -34,60 +34,96 @@ const NowPlaying=()=>{
             <br/>
             {
                 mode==="tv"&&
-                <Table responsive>
-                    <tbody>
-                        <tr>
-                            {
+                <div className="row">
 
-                                shows.map(show =>
-
-                                <td>
-                                    <img width="100" heigh="100" src={URL + show.poster_path}/>
-                                    <br/>
-                                    <Link to={`/details/tv/${show.id}`}>
-                                        {show.name}
+                    {shows &&
+                    shows.slice(0,4).map(s =>
+                        <div className="col-2">
+                            <div className="card">
+                                <img src={URL + s.poster_path}/>
+                                <div className="card-body">
+                                    <Link to={`/details/tv/${s.id}`}>
+                                        <h5 className="card-title">{s.name}</h5>
                                     </Link>
+
                                     <br/>
-                                    {show.first_air_date}
-                                </td>
-                                )
-                            }
-                        </tr>
-                    </tbody>
-
-                </Table>
-            }
-            {/*{*/}
-            {/*    JSON.stringify(shows)*/}
-            {/*}*/}
-            {
-                mode==="movie"&&
-                <Table responsive>
-                    <tbody>
-
-                    <tr>
-                        {
-                            movies &&
-                        movies.map(m =>
-                            <td>
-                                <img width="100" heigh="100" src={URL + m.poster_path}/>
+                                    {s.first_air_date}
+                                </div>
+                            </div>
+                            <br/>
+                        </div>
+                    )
+                    }
+                    <div className="col-2">
+                        <div className="card">
+                            <div className="card-body">
                                 <br/>
-                                <Link to={`/details/movie/${m.id}`}>
-                                    {m.title}
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <Link to={`/nowplaying/tv`}>
+                                    <h5 className="card-title">View More</h5>
                                 </Link>
                                 <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
 
-                                {m.release_date}
-                            </td>
+
+                </div>
+            }
+
+            {
+                mode==="movie"&&
+                <div className="row">
+
+                        {
+                            movies &&
+                        movies.slice(0,4).map(m =>
+                            <div className="col-2">
+                                <div className="card">
+                                    <img src={URL + m.poster_path}/>
+                                    <div className="card-body">
+                                        <Link to={`/details/movie/${m.id}`}>
+                                            <h5 className="card-title">{m.title}</h5>
+                                        </Link>
+                                        <br/>
+                                        {m.release_date}
+                                    </div>
+
+                                </div>
+                            </div>
                         )
                         }
-                    </tr>
-                    </tbody>
-                </Table>
+                    <div className="col-2">
+                        <div className="card">
+                            <div className="card-body">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <Link to={`/nowplaying/movie`}>
+                                    <h5 className="card-title">View More</h5>
+                                </Link>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
             }
-            {/*{*/}
-            {/*     JSON.stringify(movies)*/}
-            {/*}*/}
+
         </div>
     )
 }

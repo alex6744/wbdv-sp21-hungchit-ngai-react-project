@@ -28,58 +28,98 @@ const Popular=()=>{
             </ul>
             {
                 mode==="movie"&&
-                <Table responsive>
-                    <tbody>
+                <div className="row">
 
-                    <tr>
-                        {movies &&
-                        movies.map(m =>
-                            <td>
-                                <img width="100" heigh="100" src={URL + m.poster_path}/>
+                    { movies&&
+                        movies.slice(0,4).map((movie=>
+                                <div className="col-2">
+                                    <div className="card">
+                                        <img src={URL + movie.poster_path}/>
+                                        <div className="card-body">
+                                            <Link to={`/details/movie/${movie.id}`}>
+                                                <h5 className="card-title">{movie.title}</h5>
+                                            </Link>
+                                            <br/>
+                                            vote average:
+                                            <br/>
+                                            {movie.vote_average}
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </div>
+                        ))
+
+                    }
+                    <div className="col-2">
+                        <div className="card">
+                            <div className="card-body">
                                 <br/>
-                                <Link to={`/details/movie/${m.id}`}>
-                                    {m.title}
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <Link to={`/popular/movie`}>
+                                    <h5 className="card-title">View More</h5>
                                 </Link>
                                 <br/>
                                 <br/>
-                                vote average:
                                 <br/>
-                                {m.vote_average}
-                            </td>
-                        )
-                        }
-                    </tr>
-                    </tbody>
-                </Table>
+                                <br/>
+                                <br/>
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
             }
-            {/*{*/}
-            {/*    JSON.stringify(movies)*/}
-            {/*}*/}
+
             {
                 mode==="tv"&&
-                <Table responsive>
-                    <tbody>
+                <div className="row">
 
-                    <tr>
                         {shows &&
-                        shows.map(s =>
-                            <td>
-                                <img width="100" heigh="100" src={URL + s.poster_path}/>
+                        shows.slice(0,4).map(s =>
+                            <div className="col-2">
+                                <div className="card">
+                                    <img src={URL + s.poster_path}/>
+                                    <div className="card-body">
+                                        <Link to={`/details/tv/${s.id}`}>
+                                            <h5 className="card-title">{s.name}</h5>
+                                        </Link>
+
+                                        <br/>
+                                        vote average:
+                                        <br/>
+                                        {s.vote_average}
+                                    </div>
+                                </div>
                                 <br/>
-                                <Link to={`/details/tv/${s.id}`}>
-                                    {s.name}
-                                </Link>
-                                <br/>
-                                <br/>
-                                vote average:
-                                <br/>
-                                {s.vote_average}
-                            </td>
+                            </div>
                         )
                         }
-                    </tr>
-                    </tbody>
-                </Table>
+                        <div className="col-2">
+                            <div className="card">
+                                <div className="card-body">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <Link to={`/popular/tv`}>
+                                        <h5 className="card-title">View More</h5>
+                                    </Link>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </div>
+                            </div>
+                            <br/>
+                        </div>
+
+
+                </div>
             }
         </div>
     )
