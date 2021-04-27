@@ -1,5 +1,5 @@
-const LOGIN_URL="http://localhost:8080";
-//const LOGIN_URL="https://hungchit-ngai-java-server-01.herokuapp.com";
+//const LOGIN_URL="http://localhost:8080";
+const LOGIN_URL="https://hungchit-ngai-java-server-01.herokuapp.com";
 
 export const userRegister=(user)=> {
 
