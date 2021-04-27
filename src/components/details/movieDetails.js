@@ -1,5 +1,5 @@
 import React ,{useState,useEffect} from 'react'
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import movieService from '../../services/movie-service'
 import ratingService from '../../services/rating-service'
 import {Table} from "react-bootstrap";
@@ -38,27 +38,48 @@ const MovieDetails=({currentUser})=>{
             {/*}*/}
 
 
-               <Table responsive >
-                   <tbody>
+               <div className="row">
 
-                       <tr>
 
                            { casts&&
-                               casts.map(actor=>
-                                   <td>
-                                       <img width="100" heigh="100" src={URL+actor.profile_path}/>
-                                       <br/>
-                                       {
-                                           actor.name
-                                       }
-
-                                   </td>
+                               casts.slice(0,4).map(actor=>
+                                   <div className="col-2">
+                                       <div className="card">
+                                           <img width="100" heigh="100" src={URL+actor.profile_path}/>
+                                           <div className="card-body">
+                                               <Link to={`/details/actor/${actor.id}`}>
+                                                    <h5 className="card-title">{actor.name}</h5>
+                                               </Link>
+                                           </div>
+                                       </div>
+                                   </div>
                                )
+
                            }
-                       </tr>
-                   </tbody>
-               </Table>
-Rate this Movie
+                           <div className="col-2">
+                               <div className="card">
+                                   <br/>
+                                   <br/>
+                                   <br/>
+
+                                   <div className="card-body">
+                                       <Link to={"/"}>
+                                           <h3 className="card-title">View More</h3>
+                                       </Link>
+                                   </div>
+                                   <br/>
+                                   <br/>
+                                   <br/>
+
+
+                               </div>
+                           </div>
+
+               </div>
+            <br/>
+            <br/>
+            <h1>Rate this Movie</h1>
+            <br/>
             <textarea   value={comment}
                         onChange={(e)=>setComment(e.target.value)}></textarea>
 
@@ -87,6 +108,8 @@ Rate this Movie
                     </tr>
                 </tbody>
             </Table>
+
+            adsadsasdadsasdas
         </div>
 
     )
