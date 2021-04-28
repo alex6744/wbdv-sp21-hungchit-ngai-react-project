@@ -41,7 +41,7 @@ const AdminPage=()=>{
             </>
             }
             {
-                localStorage.getItem("role")=="ROLE_ADMIN"&&
+                localStorage.getItem("role")!="ROLE_ADMIN"&&
                     <div>
                         <h1>Only admin can access</h1>
                     </div>
