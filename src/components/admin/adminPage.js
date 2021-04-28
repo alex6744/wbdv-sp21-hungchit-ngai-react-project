@@ -11,30 +11,43 @@ const AdminPage=()=>{
     },[])
     return(
         <div>
-            <h1>All User</h1>
-            <div className="row">
-                {
+
+{
+                localStorage.getItem("role")=="ROLE_ADMIN"&&
+            <>
+                <h1>All User</h1>
+                <div className="row">
+                    {
                     users&&
                     users.map(user=>
-                        <div className="col-2">
+                    <div className="col-2">
 
-                            <div className="card">
-                                <Link to={`/profile/${user.id}`}>
-                                    <h3>User: {user.username}</h3>
-                                </Link>
+                        <div className="card">
+                            <Link to={`/profile/${user.id}`}>
+                                <h3>User: {user.username}</h3>
+                            </Link>
 
 
 
-                            </div>
+                    </div>
 
-                        </div>
+                    </div>
                     )
 
-                }
+                    }
 
-            </div>
+                </div>
 
+            </>
+            }
+            {
+                localStorage.getItem("role")=="ROLE_ADMIN"&&
+                    <div>
+                        <h1>Only admin can access</h1>
+                    </div>
+            }
         </div>
     )
+
 }
 export default AdminPage
