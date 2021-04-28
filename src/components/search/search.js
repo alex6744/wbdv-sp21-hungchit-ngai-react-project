@@ -3,6 +3,7 @@ import {Link, Route, useHistory, useParams} from "react-router-dom";
 import SearchMovies from "./searchMovies";
 import SearchTV from "./searchTV";
 import "./search.css"
+import SearchActor from "./searchActor";
 const Search=()=>{
     const {title,type}=useParams()
     const [searchTitle,setSearchTitle]=useState("")
@@ -37,6 +38,11 @@ const Search=()=>{
                                 TV Shows
                             </Link>
                         </li>
+                        <li className={`list-group-item ${type === "person" ? "active" : ""}`}>
+                            <Link to={`/search/person/${title}`} className="nav-link color-black" >
+                                Actor
+                            </Link>
+                        </li>
 
                     </ul>
                 </div>
@@ -48,6 +54,10 @@ const Search=()=>{
                     <Route exact={true}
                            path={["/search/tv","/search/tv/:title"]}>
                         <SearchTV/>
+                    </Route>
+                    <Route exact={true}
+                           path={["/search/person","/search/person/:title"]}>
+                        <SearchActor/>
                     </Route>
                 </div>
             </div>

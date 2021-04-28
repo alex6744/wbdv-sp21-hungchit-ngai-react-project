@@ -62,7 +62,7 @@ const Login=({history})=>{
                                                 localStorage.setItem("token",message.accessToken)
                                                 localStorage.setItem("id",message.id)
                                                 localStorage.setItem("email",message.email)
-                                                localStorage.setItem("roles",message.roles)
+                                                localStorage.setItem("role",message.roles[0])
                                                 history.push('/home')
                                             }
                                         })

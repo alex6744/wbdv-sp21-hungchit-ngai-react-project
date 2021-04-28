@@ -18,6 +18,10 @@ import TVPopular from "./popular/TVPopular";
 import TVNowPlaying from "./nowPlaying/TVNowPlaying";
 import ActorDetails from "./details/actorDetails";
 import AllActor from "./credits/allActor";
+import UploadMovie from "./creator/uploadMovie";
+import ProfileUser from "./user/profileUser";
+import AdminPage from "./admin/adminPage";
+import Privacy from "./privacy";
 
 const Manager =({history})=>{
 
@@ -27,17 +31,7 @@ const Manager =({history})=>{
 
         return(
             <div>
-                <button onClick={()=>{
-                    LoginService.currentUser().then(user=>console.log(user))
-                }}>sds</button>
-                <button onClick={()=>{
-                    LoginService.profile().then(u=>console.log(u))
-                }}>sds</button>
-                {JSON.stringify("sds")}
 
-                {localStorage.getItem("username")}
-                {localStorage.getItem("token")}
-                {localStorage.getItem("roles")}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light container-fluid navbar-style">
                     <div className="container-fluid">
 
@@ -93,17 +87,21 @@ const Manager =({history})=>{
                         </div>
                         <div className="col-1 ">
                             <DropdownButton variant="white" id="dropdown-basic-button" title="People">
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                <Dropdown.Item >
+                                    <Link to={"/search/person"}>
+                                        Search Actors
+                                    </Link>
+                                </Dropdown.Item>
                             </DropdownButton>
                         </div>
-                        <div className="col-5 ">
+                        <div className="col-4 ">
 
-
+                            <Link to="/privacy">
+                                privacy policy
+                            </Link>
 
                         </div>
-                        <div className="col-1 ">
+                        <div className="col-2 ">
 
                             {
                                 !localStorage.getItem("username")&&
@@ -137,10 +135,29 @@ const Manager =({history})=>{
                               </div>
                             }
                         </div>
+
                         <div className="col-1 ">
 
+                            {
+                                localStorage.getItem("role")&&localStorage.getItem("role")=="ROLE_CREATOR"&&
+                                <i onClick={()=>{
+                                        history.push(`/creator/upload/${localStorage.getItem("id")}`)
+                                }
+                                } className="fas fa-plus fa-2x"></i>
+                            }
+                            {
+                                localStorage.getItem("role")&&localStorage.getItem("role")=="ROLE_USER"&&
+                                <i className="fas fa-cart-plus fa-2x"></i>
+                            }
 
-                            <i className="fas fa-plus fa-2x"></i>
+                            {
+                                localStorage.getItem("role")&&localStorage.getItem("role")=="ROLE_ADMIN"&&
+                                <i className="fas fa-users fa-2x"
+                                    onClick={() => {
+                                        history.push(`/admin`)
+                                    }
+                                    }></i>
+                            }
                         </div>
 
                     </div>
@@ -149,6 +166,10 @@ const Manager =({history})=>{
                 <Route path={["/home"]}
                        exact={true}>
                     <Main/>
+                </Route>
+                <Route path={["/privacy"]}
+                       exact={true}>
+                    <Privacy/>
                 </Route>
                 <Route path={["/popular/movie"]}
                        exact={true}>
@@ -176,7 +197,7 @@ const Manager =({history})=>{
                 </Route>
                 <Route path={["/details/movie/:title"]}
                        exact={true}>
-                    <MovieDetails />
+                    <MovieDetails history={history} />
                 </Route>
                 <Route path={["/details/tv/:title"]}
                        exact={true}>
@@ -197,6 +218,18 @@ const Manager =({history})=>{
                 <Route path={["/profile"]}
                        exact={true}>
                     <Profile/>
+                </Route>
+                <Route path={["/profile/:type"]}
+                       exact={true}>
+                    <ProfileUser/>
+                </Route>
+                <Route path={["/creator/upload/:title"]}
+                       exact={true}>
+                    <UploadMovie/>
+                </Route>
+                <Route path={["/admin"]}
+                       exact={true}>
+                    <AdminPage/>
                 </Route>
 
 

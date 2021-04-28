@@ -26,7 +26,7 @@ const SearchTV=()=>{
             <ul className="list-group">
                 {
                     results.length===0&&
-                    <h3>There are no movies that matched your query.</h3>
+                    <h3>There are no TV shows that matched your query.</h3>
                 }
                 {
                     results &&

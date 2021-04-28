@@ -30,7 +30,9 @@ const SearchMovies=()=>{
                     results.length===0&&
                     <h3>There are no movies that matched your query.</h3>
                 }
+                {
 
+                }
 
                 {
                     results &&

@@ -175,7 +175,7 @@ const Register=({history})=>{
                                                                 localStorage.setItem("username",message.username)
                                                                 localStorage.setItem("token",message.accessToken)
                                                                 localStorage.setItem("id",message.id)
-                                                                localStorage.setItem("roles",message.roles)
+                                                                localStorage.setItem("role",message.roles[0])
                                                                 history.push('/home')
                                                             }
                                                         )

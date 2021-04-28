@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import movieService from '../../services/movie-service'
+import tvService from '../../services/tv-service'
 const AllActor=()=>{
     const  {title,type}=useParams()
     const [items,setItems]=useState([])
@@ -10,7 +11,8 @@ const AllActor=()=>{
             movieService.findCreditById(title).then(items=>setItems(items.cast))
             movieService.findMovieById(title).then(m=>setName(m.title))
         }else {
-            console.log("a")
+            tvService.findCreditById(title).then(items=>setItems(items.cast))
+            tvService.findTvById(title).then(tv=>setName(tv.name))
         }
     },[])
     const URL="https://image.tmdb.org/t/p/w500/"
